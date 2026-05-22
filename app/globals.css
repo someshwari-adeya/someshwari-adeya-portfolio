@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #3a3939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #f3f3f3;
+  --color-outline: #a68b80;
+  --color-outline-variant: #584239;
+  --color-primary: #d85318;
+  --color-on-primary: #581e00;
+  --color-primary-container: #d85318;
+  --color-on-primary-container: #591e00;
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+}
+
+@layer base {
+  * {
+    @apply border-outline-variant;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-inter text-on-surface antialiased;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .text-display-lg {
+    font-family: var(--font-hanken), sans-serif;
+    font-size: clamp(3.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .text-headline-lg {
+    font-family: var(--font-hanken), sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .text-headline-lg-mobile {
+    font-family: var(--font-hanken), sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .text-headline-md {
+    font-family: var(--font-hanken), sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .text-body-lg {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-body-md {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .text-label-caps {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-surface);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-bright) var(--color-surface-container-lowest);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-surface-container-lowest);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-surface-bright);
+  border-radius: 9999px;
+}
