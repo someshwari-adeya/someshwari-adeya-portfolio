@@ -68,7 +68,9 @@ export function useScrollAnimation<T extends HTMLElement>(
     return () => {
       animation?.scrollTrigger?.kill();
       animation?.kill();
-      ScrollTrigger.refresh();
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 0);
     };
   }, [options, ref]);
 }

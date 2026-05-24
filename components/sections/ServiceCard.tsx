@@ -1,6 +1,9 @@
 "use client";
 
 import type * as React from "react";
+import { useCallback } from "react";
+import { Code2, SearchCheck, Palette, MonitorSmartphone, Cpu, Settings, Database, ShieldCheck } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 export interface ServiceType {
@@ -15,30 +18,55 @@ interface ServiceCardProps {
   className?: string;
 }
 
+/* Lucide Icon registry specific to services */
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  Code2,
+  SearchCheck,
+  Palette,
+  MonitorSmartphone,
+  Cpu,
+  Settings,
+  Database,
+  ShieldCheck
+};
+
 export function ServiceCard({ service, className }: ServiceCardProps): React.JSX.Element {
+  const IconComponent = ICON_MAP[service.icon] || Code2;
+
+  /* Coordinate mouse spotlight update */
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  }, []);
+
   return (
     <article
       data-service-card
+      onMouseMove={handleMouseMove}
       className={cn(
-        "rounded-2xl border border-outline-variant bg-[#1c1b1b] p-8 transition-all duration-300 hover:border-primary/30 hover:bg-surface-container flex flex-col gap-4 text-left",
+        "service-card-premium group text-left cursor-default flex flex-col gap-5",
         className
       )}
     >
-      {/* Icon/Emoji */}
-      <div className="text-[36px] select-none leading-none mb-1" aria-hidden="true">
-        {service.icon}
+      {/* Icon Frame */}
+      <div className="service-icon-wrapper">
+        <IconComponent className="w-6 h-6 stroke-[1.75]" />
       </div>
 
-      {/* Title */}
-      <h3 className="font-hanken text-[22px] font-semibold text-white tracking-tight leading-tight">
-        {service.title}
-      </h3>
+      {/* Content */}
+      <div className="flex flex-col gap-2.5">
+        <h3 className="font-hanken text-[21px] font-semibold text-white tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
+          {service.title}
+        </h3>
 
-      {/* Description */}
-      <p className="font-inter text-body-md text-on-surface-variant leading-relaxed">
-        {service.description}
-      </p>
+        <p className="font-inter text-[14px] text-on-surface-variant/90 leading-relaxed">
+          {service.description}
+        </p>
+      </div>
     </article>
   );
 }
-

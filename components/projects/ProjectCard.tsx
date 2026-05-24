@@ -27,6 +27,7 @@ export function ProjectCard({ project }: ProjectCardProps): React.JSX.Element {
               src={project.coverImage}
               alt={project.title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover filter grayscale opacity-85 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03]"
               onError={() => setImgError(true)}
             />

@@ -110,7 +110,7 @@ export default function RootLayout({
       lang="en"
       className={`${hanken.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-[var(--color-background)] text-[var(--color-on-surface)]">
+      <body suppressHydrationWarning className="bg-[var(--color-background)] text-[var(--color-on-surface)]">
         {children}
         <script
           type="application/ld+json"

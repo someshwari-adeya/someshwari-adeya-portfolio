@@ -1,5 +1,6 @@
 "use client";
 
+import type * as React from "react";
 import {
   ArrowUpRight,
   CheckCheck,
@@ -8,14 +9,22 @@ import {
   FolderSearch,
   Rocket,
   SearchCheck,
-  TerminalSquare
+  TerminalSquare,
+  Target,
+  Users2,
+  AlertCircle,
+  Layers,
+  Activity,
+  Zap,
+  FileText,
+  Video,
+  MessageSquare
 } from "lucide-react";
-import { useMemo, useRef } from "react";
-
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { gsap } from "@/lib/gsap";
 import { HOW_I_WORK_ILLUSTRATION_COPY } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { useMemo, useRef, useCallback } from "react";
 
 export interface TimelineStepProps {
   step: number;
@@ -27,64 +36,80 @@ export interface TimelineStepProps {
   isLast?: boolean;
 }
 
-type StepIllustrationProps = {
+interface StepIllustrationProps {
   step: number;
   title: string;
-};
+}
 
 function StepIllustration({ step, title }: StepIllustrationProps): React.JSX.Element {
-  const iconClassName = "h-10 w-10 text-primary";
+  const iconClassName = "h-11 w-11 text-[#f37335] timeline-icon-bounce mb-2";
   const accentClassName =
-    "rounded border border-outline-variant bg-surface-container-high px-3 py-2 text-label-caps text-on-surface-variant";
+    "rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 font-mono text-[11px] text-primary tracking-wider uppercase";
 
   switch (step) {
     case 1:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
-          <div className="flex items-center gap-4">
-            <SearchCheck className={iconClassName} aria-hidden="true" />
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-outline-variant bg-surface-container-high">
-              <FolderSearch className="h-8 w-8 text-on-surface-variant" aria-hidden="true" />
-            </div>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
+          <SearchCheck className={iconClassName} aria-hidden="true" />
+          <div className="grid w-full max-w-[18rem] gap-3">
+            {[
+              { text: "What success looks like", icon: Target, color: "#f37335", bg: "rgba(243,115,53,0.08)", border: "rgba(243,115,53,0.2)" },
+              { text: "Who uses this product", icon: Users2, color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" },
+              { text: "What is broken today", icon: AlertCircle, color: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)" }
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.text} className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg p-2.5 hover:border-primary/25 transition-all duration-300">
+                  <span className="text-[12px] font-medium text-white/95">{item.text}</span>
+                  <div
+                    style={{ backgroundColor: item.bg, borderColor: item.border }}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg border transition-transform duration-300 hover:scale-110 shadow-sm"
+                  >
+                    <Icon style={{ color: item.color }} className="h-4 w-4" />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <div className={accentClassName}>{HOW_I_WORK_ILLUSTRATION_COPY.discoveryTag}</div>
         </div>
       );
     case 2:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
           <ClipboardList className={iconClassName} aria-hidden="true" />
-          <div className="grid w-full max-w-[16rem] gap-2">
+          <div className="grid w-full max-w-[18rem] gap-3">
             {HOW_I_WORK_ILLUSTRATION_COPY.auditLines.map((line, index) => (
-              <span
-                key={line}
-                className={cn(
-                  "block h-2 rounded-full bg-surface-container-high",
-                  index === 0 ? "w-full" : index === 1 ? "w-5/6" : index === 2 ? "w-4/6" : "w-3/6"
-                )}
-              />
+              <div key={line} className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg p-2.5">
+                <span className="text-[12px] font-medium text-white/95">{line}</span>
+                <span
+                  className={cn(
+                    "h-2 rounded-full",
+                    index === 0 ? "w-16 bg-[#f37335]" : index === 1 ? "w-12 bg-[#f59e0b]" : index === 2 ? "w-8 bg-[#ffc0a5]" : "w-6 bg-white/30"
+                  )}
+                />
+              </div>
             ))}
           </div>
         </div>
       );
     case 3:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
           <CheckCheck className={iconClassName} aria-hidden="true" />
-          <div className="grid w-full max-w-[17rem] gap-3">
+          <div className="grid w-full max-w-[18rem] gap-3">
             {HOW_I_WORK_ILLUSTRATION_COPY.planChecklist.map((item, index) => (
-              <div key={item} className="flex items-center gap-3">
+              <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
                 <span
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-sm border text-[10px]",
+                    "flex h-5 w-5 items-center justify-center rounded-md border text-[11px] font-bold",
                     index < 2
-                      ? "border-primary text-primary"
-                      : "border-outline-variant text-on-surface-variant"
+                      ? "border-[#f37335] bg-[#f37335]/20 text-[#f37335]"
+                      : "border-white/20 text-white/40"
                   )}
                 >
                   {index < 2 ? "✓" : ""}
                 </span>
-                <span className="text-label-caps text-on-surface-variant">{item}</span>
+                <span className="font-inter text-[13px] text-white/90 font-medium">{item}</span>
               </div>
             ))}
           </div>
@@ -92,52 +117,90 @@ function StepIllustration({ step, title }: StepIllustrationProps): React.JSX.Ele
       );
     case 4:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
           <Code2 className={iconClassName} aria-hidden="true" />
-          <div className="grid w-full max-w-[18rem] gap-2 rounded-lg border border-outline-variant bg-surface-container-high p-4 font-mono text-xs text-on-surface-variant">
-            {HOW_I_WORK_ILLUSTRATION_COPY.executeSnippet.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </div>
-        </div>
-      );
-    case 5:
-      return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
-          <TerminalSquare className={iconClassName} aria-hidden="true" />
-          <div className="grid w-full max-w-[18rem] gap-2 rounded-lg border border-outline-variant bg-surface-container-high p-4 font-mono text-xs">
-            {HOW_I_WORK_ILLUSTRATION_COPY.testOutputs.map((line, index) => (
-              <span
-                key={line}
-                className={index < 2 ? "text-[#57c785]" : "text-primary-container"}
-              >
+          <div className="grid w-full max-w-[19rem] gap-1.5 rounded-xl border border-[#f37335]/35 bg-[#1a1310] p-4 font-mono text-[11px] text-[#ffc0a5] shadow-[0_0_20px_rgba(243,115,53,0.08)]">
+            <div className="flex items-center gap-1.5 border-b border-white/15 pb-2 mb-1.5 opacity-60">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#f37335]" />
+              <span>build.js</span>
+            </div>
+            {HOW_I_WORK_ILLUSTRATION_COPY.executeSnippet.map((line, idx) => (
+              <span key={line} className={idx === 0 ? "text-[#f59e0b]" : idx === 1 ? "text-teal-400 pl-2" : "text-white/80 pl-2"}>
                 {line}
               </span>
             ))}
           </div>
         </div>
       );
+    case 5:
+      return (
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
+          <TerminalSquare className={iconClassName} aria-hidden="true" />
+          <div className="grid w-full max-w-[19rem] gap-2 rounded-xl border border-white/15 bg-black/40 p-4 font-mono text-[11px] text-white/85 shadow-lg">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-1.5">
+              <span className="opacity-60">Test Suite</span>
+              <span className="text-teal-400 font-bold">100% PASS</span>
+            </div>
+            {HOW_I_WORK_ILLUSTRATION_COPY.testOutputs.map((line, index) => (
+              <div key={line} className="flex items-center justify-between">
+                <span className={index < 2 ? "text-[#57c785]" : "text-primary/70"}>
+                  {line}
+                </span>
+                <span className="text-[10px] opacity-40">ms</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     case 6:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
           <Rocket className={iconClassName} aria-hidden="true" />
-          <div className="flex items-center gap-4 rounded-lg border border-outline-variant bg-surface-container-high px-4 py-3">
-            <ArrowUpRight className="h-6 w-6 text-primary-container" aria-hidden="true" />
-            <span className="text-label-caps text-on-surface-variant">
-              {HOW_I_WORK_ILLUSTRATION_COPY.deployTag}
-            </span>
+          <div className="grid w-full max-w-[18rem] gap-3">
+            {[
+              { text: "Staged Canary Rollout", icon: Layers, color: "#14b8a6", bg: "rgba(20,184,166,0.08)", border: "rgba(20,184,166,0.2)" },
+              { text: "Real-time Monitoring", icon: Activity, color: "#f37335", bg: "rgba(243,115,53,0.08)", border: "rgba(243,115,53,0.2)" },
+              { text: "Zero-downtime Release", icon: Zap, color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" }
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.text} className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg p-2.5 hover:border-primary/25 transition-all duration-300">
+                  <span className="text-[12px] font-medium text-white/95">{item.text}</span>
+                  <div
+                    style={{ backgroundColor: item.bg, borderColor: item.border }}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg border transition-transform duration-300 hover:scale-110 shadow-sm"
+                  >
+                    <Icon style={{ color: item.color }} className="h-4 w-4" />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       );
     case 7:
       return (
-        <div className="flex flex-col items-center gap-4" aria-label={title}>
+        <div className="flex flex-col items-center gap-4 w-full px-4" aria-label={title}>
           <ClipboardList className={iconClassName} aria-hidden="true" />
-          <div className="flex items-center gap-4 rounded-lg border border-outline-variant bg-surface-container-high px-4 py-3">
-            <span className="text-label-caps text-on-surface-variant">
-              {HOW_I_WORK_ILLUSTRATION_COPY.handoffTag}
-            </span>
-            <ArrowUpRight className="h-5 w-5 text-primary-container" aria-hidden="true" />
+          <div className="grid w-full max-w-[18rem] gap-3">
+            {[
+              { text: "System documentation", icon: FileText, color: "#3b82f6", bg: "rgba(59,130,246,0.08)", border: "rgba(59,130,246,0.2)" },
+              { text: "Loom walkthroughs", icon: Video, color: "#ec4899", bg: "rgba(236,72,153,0.08)", border: "rgba(236,72,153,0.2)" },
+              { text: "Codebase comments", icon: MessageSquare, color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" }
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.text} className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg p-2.5 hover:border-primary/25 transition-all duration-300">
+                  <span className="text-[12px] font-medium text-white/95">{item.text}</span>
+                  <div
+                    style={{ backgroundColor: item.bg, borderColor: item.border }}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg border transition-transform duration-300 hover:scale-110 shadow-sm"
+                  >
+                    <Icon style={{ color: item.color }} className="h-4 w-4" />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       );
@@ -157,6 +220,16 @@ export function TimelineStep({
 }: TimelineStepProps): React.JSX.Element {
   const stepRef = useRef<HTMLDivElement | null>(null);
   const dotSelector = useMemo(() => `[data-step="${step}"]`, [step]);
+
+  /* Spotlight mouse movements handler */
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  }, []);
 
   useScrollAnimation(stepRef, {
     start: "top 75%",
@@ -229,38 +302,44 @@ export function TimelineStep({
     <div
       ref={stepRef}
       className={cn(
-        "relative pl-12 md:pl-0",
-        !isLast ? "pb-14 md:pb-20" : undefined
+        "relative pl-12 md:pl-0 z-10",
+        !isLast ? "pb-14 md:pb-24" : undefined
       )}
     >
       <span
         data-step={step}
-        className="absolute left-4 top-1/2 z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-outline-variant)] md:left-1/2"
+        className="absolute left-4 top-1/2 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#131313] bg-[var(--color-outline-variant)] md:left-1/2 transition-colors duration-300"
       />
-      <div className="grid items-center gap-8 md:min-h-[280px] md:grid-cols-2 md:gap-12">
+      <div className="grid items-center gap-8 md:min-h-[290px] md:grid-cols-2 md:gap-14">
+        {/* Text Area */}
         <div
           data-timeline-text
-          className={cn(side === "left" ? "md:order-2" : "md:order-1")}
+          className={cn(side === "left" ? "md:order-2 text-left" : "md:order-1 text-left")}
         >
-          <p className="font-mono text-[64px] leading-none text-[var(--color-on-surface-variant)] opacity-30">
+          <p className="font-hanken text-[56px] font-extrabold leading-none text-[#f37335]/25 select-none">
             {step.toString().padStart(2, "0")}
           </p>
-          <p className="mt-5 text-label-caps text-primary">{subtitle}</p>
-          <h3 className="mt-4 text-headline-md text-on-surface">{title}</h3>
-          <p className="mt-4 max-w-xl text-body-md text-on-surface-variant">
+          <p className="mt-4 text-[12px] font-mono font-semibold tracking-wider text-primary uppercase">{subtitle}</p>
+          <h3 className="mt-3 font-hanken text-[24px] font-bold text-white tracking-tight leading-snug">{title}</h3>
+          <p className="mt-3.5 font-inter text-[14px] leading-relaxed text-on-surface-variant/90">
             {description}
           </p>
           {loopNote ? (
-            <span className="mt-3 inline-flex items-center gap-1 rounded-full border border-outline-variant bg-surface-container-high px-3 py-1 font-mono text-[11px] text-primary">
+            <span className="mt-4.5 inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/5 px-3.5 py-1 font-mono text-[11px] text-primary">
               {loopNote}
             </span>
           ) : null}
         </div>
+
+        {/* Dynamic Card Area */}
         <div
           data-timeline-card
           className={cn(side === "left" ? "md:order-1" : "md:order-2")}
         >
-          <div className="flex min-h-[180px] items-center justify-center rounded-lg border border-outline-variant bg-surface-container p-6 md:aspect-[16/10]">
+          <div
+            onMouseMove={handleMouseMove}
+            className="timeline-card-premium w-full min-h-[300px] py-6 px-4 md:py-8 md:px-6"
+          >
             <StepIllustration step={step} title={title} />
           </div>
         </div>

@@ -40,6 +40,7 @@ export function ProjectImageContainer({ project }: ProjectImageContainerProps): 
                 src={project.coverImage}
                 alt={project.title}
                 fill
+                sizes="(max-width: 1280px) 100vw, 1280px"
                 className="object-cover object-top transition-all duration-700 group-hover:scale-[1.02]"
                 onError={() => setImgError(true)}
                 priority

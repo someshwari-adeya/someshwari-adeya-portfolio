@@ -9,12 +9,34 @@ import { BEYOND_ROLES } from "@/lib/constants";
 export function BeyondRolesAgencyCard(): React.JSX.Element {
   const { agency } = BEYOND_ROLES;
   const [imgError, setImgError] = useState(false);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
   return (
     <article
       data-beyond-roles-card
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden rounded-2xl border border-white/5 md:border-outline-variant/30 bg-gradient-to-br from-[#1a1a1a] via-[#151515] to-[#101010] p-6 xs:p-8 md:p-12 shadow-2xl hover:border-primary/30 transition-all duration-300 group"
     >
+      {/* Dynamic spotlight glow overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-0"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(600px circle at ${coords.x}px ${coords.y}px, rgba(243, 115, 53, 0.08), transparent 45%)`
+        }}
+      />
+
       <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl pointer-events-none group-hover:bg-primary/15 transition-all duration-500" />
       <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 

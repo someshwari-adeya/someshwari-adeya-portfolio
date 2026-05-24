@@ -158,31 +158,31 @@ export const STATS: Stat[] = [
 
 export const APPROACH_COPY = {
   label: "Approach",
-  headlineLeading: "Better",
+  headlineLeading: "Better ",
   headlineAccent: "products",
-  headlineTrailing: "usually come from better operational decisions.",
+  headlineTrailing: " come from better operational decisions.",
   description:
-    "I care about the internal side of software as much as the visible one: whether billing makes sense, automations drift, or performance holds up when usage gets real."
+    "I build digital products with equal focus on seamless user experience and business operations. To me, a beautiful and modern website is only as good as the behind-the-scenes systems—like secure billing, customer dashboards, and database structures—that keep your daily business running reliably."
 } as const;
 
 export const APPROACH_CARDS: ApproachCard[] = [
   {
     icon: "Workflow",
-    title: "Product systems",
+    title: "Solid Foundations & Team Workspaces",
     description:
-      "Designing the invisible parts users feel immediately: cleaner flows and sturdier admin tooling that prevents operational drift before it starts."
+      "Designing secure databases and intuitive admin dashboards for your internal teams. I prevent technical headaches before they start by ensuring that your data stays perfectly organized, auditable, and built to support your growth."
   },
   {
     icon: "Bot",
-    title: "Automation work",
+    title: "Smart & Reliable Automation",
     description:
-      "Replacing repetitive internal processes with monitored, recoverable automation that respects platform constraints and scales without human babysitting."
+      "Replacing repetitive manual tasks with secure automated workflows. Built with built-in safety checks, automated error correction, and strict compliance so your background operations run quietly and smoothly without constant human supervision."
   },
   {
     icon: "Map",
-    title: "Map & Sync interfaces",
+    title: "Fast Maps & Real-Time Data Dashboards",
     description:
-      "Making data-heavy products render and stay usable even as data layers grow, offline states expand, and performance-sensitive visuals become core workflows."
+      "Creating highly responsive visual tools that handle massive amounts of customer information without slowing down. Specialized in interactive mapping, offline-ready sync features, and speed-optimized layouts that feel instant."
   }
 ];
 
@@ -617,34 +617,58 @@ export interface Project {
 export const SERVICES = [
   {
     id: "website-development",
-    icon: "💻",
+    icon: "Code2",
     title: "Website Development",
-    description: "Custom-built websites tailored to your vision."
+    description: "Custom-built, high-speed websites tailored specifically to your brand and user needs."
   },
   {
     id: "seo-optimized",
-    icon: "🔍",
-    title: "SEO Optimized",
-    description: "Engineered for better visibility and higher rankings."
+    icon: "SearchCheck",
+    title: "SEO & Speed Auditing",
+    description: "Engineered from the ground up for maximum page speed, search visibility, and organic growth."
   },
   {
     id: "modern-design",
-    icon: "🎨",
-    title: "Modern Design",
-    description: "Clean, contemporary UI that reflects your brand."
+    icon: "Palette",
+    title: "Modern UI/UX Design",
+    description: "Clean, contemporary interfaces crafted with micro-animations and a premium, luxury feel."
   },
   {
     id: "responsive",
-    icon: "📱",
-    title: "Responsive",
-    description: "Perfect experience across devices and screen sizes."
+    icon: "MonitorSmartphone",
+    title: "Responsive & Native",
+    description: "Perfect user experience across mobile, tablet, and desktop screens with native-like fluidity."
+  },
+  {
+    id: "api-integrations",
+    icon: "Cpu",
+    title: "Connected Systems & APIs",
+    description: "Linking your app with payment gateways, CRMs, WhatsApp APIs, and external tools to keep data moving without manual double-entry."
+  },
+  {
+    id: "custom-admin",
+    icon: "Settings",
+    title: "Custom Admin Dashboards",
+    description: "Designing easy-to-use, secure management portals for your staff, with tailored editing roles and quick search features for operations."
+  },
+  {
+    id: "database-design",
+    icon: "Database",
+    title: "Clean Databases & Scaling",
+    description: "Designing fast, organized database models that keep customer information completely safe, load screens instantly, and scale as you grow."
+  },
+  {
+    id: "performance-support",
+    icon: "ShieldCheck",
+    title: "Performance Auditing & Support",
+    description: "Identifying screen bottlenecks, resolving slow page load issues, and providing rapid support responses to keep your system online."
   }
 ];
 
 
 export const BEYOND_ROLES = {
   sectionLabel: "Beyond Roles",
-  headline: "Founder & Chief Architect",
+  headline: "Founder & CEO",
   subText: "Designing, building, and shipping production-grade digital products with TechSonance InfoTech LLP.",
   agency: {
     chip: "Agency",

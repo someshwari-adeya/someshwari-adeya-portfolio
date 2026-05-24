@@ -47,7 +47,9 @@ export function useTimelineAnimation(
     return () => {
       animation.scrollTrigger?.kill();
       animation.kill();
-      ScrollTrigger.refresh();
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 0);
     };
   }, [containerRef, spineFillRef]);
 }
