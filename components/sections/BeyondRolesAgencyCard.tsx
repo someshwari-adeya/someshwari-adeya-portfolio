@@ -104,6 +104,7 @@ export function BeyondRolesAgencyCard(): React.JSX.Element {
                 alt={agency.logoAlt}
                 width={120}
                 height={120}
+                style={{ width: "auto", height: "auto" }}
                 className="relative z-10 object-contain filter drop-shadow-[0_6px_16px_rgba(216,83,24,0.15)] transition-all duration-500 group-hover:scale-110"
                 onError={() => setImgError(true)}
               />

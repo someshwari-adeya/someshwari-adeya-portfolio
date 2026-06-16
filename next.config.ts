@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"]
   },
+  experimental: {
+    webpackMemoryOptimizations: true,
+    cpus: 2
+  },
   async headers() {
     return [
       {

@@ -129,7 +129,7 @@
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(88, 66, 57, 0.35);
   border-radius: 16px;
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.25rem;
   transition:
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -150,6 +150,7 @@
   position: relative;
   border-radius: 17px;
   padding: 1px;
+  height: 100%;
   background: linear-gradient(
     135deg,
     rgba(88, 66, 57, 0.4),
@@ -571,6 +572,20 @@
 .tech-item-floating {
   animation: techFloat var(--float-duration, 5s) ease-in-out infinite;
   animation-delay: var(--float-delay, 0s);
+}
+
+/* ─── Premium Laser Shine Animation ─── */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  animation: shine 0.8s ease-in-out forwards;
 }
 
 

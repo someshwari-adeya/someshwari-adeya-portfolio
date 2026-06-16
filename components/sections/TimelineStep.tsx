@@ -316,11 +316,11 @@ export function TimelineStep({
           data-timeline-text
           className={cn(side === "left" ? "md:order-2 text-left" : "md:order-1 text-left")}
         >
-          <p className="font-hanken text-[56px] font-extrabold leading-none text-[#f37335]/25 select-none">
+          <p className="font-hanken text-[56px] font-black leading-none text-[#f37335]/50 select-none">
             {step.toString().padStart(2, "0")}
           </p>
           <p className="mt-4 text-[12px] font-mono font-semibold tracking-wider text-primary uppercase">{subtitle}</p>
-          <h3 className="mt-3 font-hanken text-[24px] font-bold text-white tracking-tight leading-snug">{title}</h3>
+          <h3 className="mt-3 font-hanken text-[30px] md:text-[36px] font-extrabold text-[#ffb597] tracking-tight leading-none">{title}</h3>
           <p className="mt-3.5 font-inter text-[14px] leading-relaxed text-on-surface-variant/90">
             {description}
           </p>

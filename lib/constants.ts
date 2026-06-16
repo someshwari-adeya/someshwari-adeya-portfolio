@@ -98,7 +98,7 @@ export const SITE_CONFIG: SiteConfig = {
   brandMark: "Someshwari Adeya.",
   tagline:
     "Full-stack product engineering with a bias toward reliability, clarity, and cleaner systems.",
-  email: "hello@someshwari.com",
+  email: "someshwari@techsonanceinfotech.com",
   availableStatus: "Available for select consulting and build partnerships",
   consultationLabel: "Book Free Consultation"
 };
@@ -162,27 +162,27 @@ export const APPROACH_COPY = {
   headlineAccent: "products",
   headlineTrailing: " come from better operational decisions.",
   description:
-    "I build digital products with equal focus on seamless user experience and business operations. To me, a beautiful and modern website is only as good as the behind-the-scenes systems—like secure billing, customer dashboards, and database structures—that keep your daily business running reliably."
+    "A great-looking website means nothing if the billing breaks, the admin panel is unusable, or the database can't keep up. I build both sides — the product your users see, and the systems your team actually runs on."
 } as const;
 
 export const APPROACH_CARDS: ApproachCard[] = [
   {
     icon: "Workflow",
-    title: "Solid Foundations & Team Workspaces",
+    title: "Clean Architecture & Reliable Systems",
     description:
-      "Designing secure databases and intuitive admin dashboards for your internal teams. I prevent technical headaches before they start by ensuring that your data stays perfectly organized, auditable, and built to support your growth."
+      "I design databases and backend logic that don't break under pressure — structured for growth, not quick fixes."
   },
   {
     icon: "Bot",
     title: "Smart & Reliable Automation",
     description:
-      "Replacing repetitive manual tasks with secure automated workflows. Built with built-in safety checks, automated error correction, and strict compliance so your background operations run quietly and smoothly without constant human supervision."
+      "Automated workflows that replace repetitive manual tasks, with built-in safety checks so things run quietly on their own."
   },
   {
     icon: "Map",
-    title: "Fast Maps & Real-Time Data Dashboards",
+    title: "Fast Maps & Real-Time Dashboards",
     description:
-      "Creating highly responsive visual tools that handle massive amounts of customer information without slowing down. Specialized in interactive mapping, offline-ready sync features, and speed-optimized layouts that feel instant."
+      "Interactive maps and data views that handle large datasets without lag — including offline sync and instant layouts."
   }
 ];
 
@@ -469,7 +469,7 @@ export const CONTACT_CONFIG: ContactConfig = {
   headlineLine3: "operational decisions.",
   subText:
     "I work with teams that need cleaner execution across product engineering, SaaS feature delivery, internal tooling, or operational cleanup.",
-  email: "hello@someshwari.com",
+  email: "someshwari@techsonanceinfotech.com",
   formTitle: "Project Inquiry",
   formSubtitle: "Tell me what needs to move.",
   projectTypes: [
@@ -490,7 +490,7 @@ export const SITE_META: SiteMeta = {
     "I help product teams ship the parts that get messy in production: admin workflows, automation logic, SaaS products, billing systems, and offline-first interfaces.",
   ogImage: "/og-default.png",
   twitterHandle: "@someshwari",
-  email: "hello@someshwari.com",
+  email: "someshwari@techsonanceinfotech.com",
   keywords: [
     "full-stack engineer",
     "product engineer",
@@ -672,7 +672,7 @@ export const BEYOND_ROLES = {
   subText: "Designing, building, and shipping production-grade digital products with TechSonance InfoTech LLP.",
   agency: {
     chip: "Agency",
-    logo: "/images/hero-illustration.png",
+    logo: "/portfolio-hero-v2.png",
     logoAlt: "TechSonance InfoTech LLP logo",
     title: "Founder, TechSonance InfoTech LLP",
     description: "Premium software development agency shipping modern, revenue-ready products.",
@@ -684,6 +684,69 @@ export const BEYOND_ROLES = {
     body: "TechSonance InfoTech LLP partners with founders and brands to design, build, and ship production-grade web apps with polish, speed, and measurable outcomes.",
     ctaLabel: "Book a build with TechSonance InfoTech",
     ctaHref: "https://www.techsonance.co.in/"
+  },
+  instagramFeed: {
+    title: "Instagram Journey",
+    subtitle: "Behind the Scenes & Shipped Builds",
+    ctaLabel: "Follow on Instagram",
+    ctaHref: "https://instagram.com/someshwari",
+    profile: {
+      username: "someshwari",
+      verified: true,
+      avatar: "/portfolio-hero-v2.png",
+      postsCount: 18,
+      followersCount: "4.8K",
+      followingCount: "342",
+      fullName: "Someshwari Adeya",
+      category: "Digital Creator / Founder",
+      bio: "Founder & CEO, TechSonance InfoTech LLP. 💻\nDesigning & shipping production-grade web apps with high polish.\n📍 Strategy → Launch | info@techsonance.co.in",
+      website: "www.techsonance.co.in",
+      websiteHref: "https://www.techsonance.co.in/"
+    },
+    posts: [
+      {
+        id: "post-1",
+        image: "/images/projects/hisaab-kitaab-cover.png",
+        caption: "Optimizing database execution times & transaction flows for Hisaab Kitaab. Built for scale. 📈 #buildinpublic #fullstack #nextjs #postgresql",
+        likes: 124,
+        commentsCount: 18,
+        isVideo: false,
+        comments: [
+          { username: "alex_dev", text: "Database performance is crucial. Clean structure!" },
+          { username: "tech_founder", text: "Nice cover! Is this PostgreSQL?" },
+          { username: "someshwari", text: "@tech_founder Yes! Scaled with custom ledger indexing." }
+        ],
+        link: "https://instagram.com/someshwari"
+      },
+      {
+        id: "post-2",
+        image: "/images/projects/syncserve-pos-cover.png",
+        caption: "Shipping SyncServe POS — an offline-first Point of Sale terminal handling heavy queues without lag. ⚡️ #nextjs #offlinefirst #webdev #mascot",
+        likes: 182,
+        commentsCount: 24,
+        isVideo: true,
+        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-fingers-typing-on-a-laptop-keyboard-close-up-1048-large.mp4",
+        comments: [
+          { username: "sara_designs", text: "Absolutely love the visual layout and offline sync!" },
+          { username: "pos_expert", text: "Offline first POS with SQLite or IndexDB?" },
+          { username: "someshwari", text: "@pos_expert IndexDB caching synced directly to PostgreSQL once connection restores." }
+        ],
+        link: "https://instagram.com/someshwari"
+      },
+      {
+        id: "post-3",
+        image: "/images/projects/freightflow-cover.png",
+        caption: "FreightFlow tracking portal UI polish. Real-time geo-coordinates, clean layout, perfect responsive scaling. 🚚 #developer #ux #gis #geofencing",
+        likes: 146,
+        commentsCount: 14,
+        isVideo: false,
+        comments: [
+          { username: "dev_guy", text: "The mapping component looks incredibly fast!" },
+          { username: "client_success", text: "FreightFlow has completely streamlined our transit logs." }
+        ],
+        link: "https://instagram.com/someshwari"
+      }
+    ]
   }
 };
 
@@ -717,6 +780,26 @@ export const SOCIAL_LINKS = [
     color: "text-blue-400",
     bgColor: "bg-blue-400/10",
     borderColor: "border-blue-400/20"
+  },
+  {
+    id: "twitter",
+    label: "Twitter / X",
+    sublabel: "Daily build logs",
+    href: "https://twitter.com/someshwari",
+    icon: "Twitter",
+    color: "text-sky-400",
+    bgColor: "bg-sky-400/10",
+    borderColor: "border-sky-400/20"
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    sublabel: "Personal updates",
+    href: "https://facebook.com/someshwari",
+    icon: "Facebook",
+    color: "text-indigo-400",
+    bgColor: "bg-indigo-400/10",
+    borderColor: "border-indigo-400/20"
   }
 ];
 
@@ -730,7 +813,7 @@ export const ABOUT_PAGE = {
     headline: "Hi there! I'm",
     headlineAccent: "Someshwari",
     subText: "I'm Someshwari Adeya, a full-stack product engineer and founder of TechSonance InfoTech LLP. I specialize in designing and shipping production-ready web platforms, robust billing workflows, offline Point of Sale terminals, and secure enterprise portals.",
-    photo: "/images/hero-illustration.png",
+    photo: "/portfolio-hero-v2.png",
     photoAlt: "Someshwari Adeya",
   },
   story: {

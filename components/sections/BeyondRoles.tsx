@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { BEYOND_ROLES } from "@/lib/constants";
 import { BeyondRolesAgencyCard } from "./BeyondRolesAgencyCard";
+import { BeyondRolesInstagramGrid } from "./BeyondRolesInstagramGrid";
 import { gsap, SplitText } from "@/lib/gsap";
 
 export function BeyondRoles(): React.JSX.Element {
@@ -107,7 +108,7 @@ export function BeyondRoles(): React.JSX.Element {
 
       <div className="relative mx-auto max-w-container z-10">
         {/* Header Block */}
-        <div className="max-w-4xl mb-12 md:mb-16">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-12 md:mb-16">
           <div ref={labelRef} className="flex items-center gap-3">
             <span ref={labelLineRef} className="h-[1px] w-6 bg-primary/60 origin-left transition-transform duration-700 scale-x-0" />
             <SectionLabel>{BEYOND_ROLES.sectionLabel}</SectionLabel>
@@ -116,13 +117,21 @@ export function BeyondRoles(): React.JSX.Element {
           <h2 ref={headlineRef} className="mt-6 font-hanken text-[36px] font-bold leading-[1.15] text-white md:text-[54px] tracking-tight">
             {BEYOND_ROLES.headline}
           </h2>
-          <p className="mt-4 font-inter text-[14px] leading-relaxed text-on-surface-variant/90 max-w-xl">
+          <p className="mt-4 font-inter text-[14px] leading-relaxed text-on-surface-variant/90 max-w-xl text-center">
             {BEYOND_ROLES.subText}
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <BeyondRolesAgencyCard />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 max-w-container mx-auto items-stretch">
+          {/* Left Column: Founder Agency Card */}
+          <div className="lg:col-span-7 flex flex-col h-full">
+            <BeyondRolesAgencyCard />
+          </div>
+
+          {/* Right Column: Instagram Showcase */}
+          <div className="lg:col-span-5 flex flex-col h-full">
+            <BeyondRolesInstagramGrid />
+          </div>
         </div>
       </div>
     </section>

@@ -284,11 +284,12 @@ export function Hero(): React.JSX.Element {
         >
           <div className="hero-illustration-wrapper relative w-full max-w-[34rem]">
             <Image
-              src="/images/hero-illustration.png"
+              src="/portfolio-hero-v2.png"
               alt={HERO_COPY.illustrationAlt}
               width={1100}
               height={1200}
               priority
+              fetchPriority="high"
               className="object-contain"
               style={{ width: "100%", height: "auto" }}
             />

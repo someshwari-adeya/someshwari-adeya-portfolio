@@ -195,7 +195,7 @@ export function Approach(): React.JSX.Element {
                 className="approach-card-border"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <article className="approach-card">
+                <article className="approach-card h-full flex flex-col">
                   <div className="approach-icon-ring">
                     <Icon
                       className="h-5 w-5 text-primary"
@@ -203,11 +203,11 @@ export function Approach(): React.JSX.Element {
                     />
                   </div>
 
-                  <h3 className="mt-8 font-hanken text-[1.375rem] font-medium leading-tight text-on-surface">
+                  <h3 className="mt-5 font-hanken text-[1.25rem] font-medium leading-tight text-on-surface">
                     {card.title}
                   </h3>
 
-                  <p className="mt-4 text-body-md leading-relaxed text-on-surface-variant/80">
+                  <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant/80 flex-grow">
                     {card.description}
                   </p>
                 </article>
